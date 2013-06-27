@@ -188,5 +188,14 @@ git checkout -- <file> : Reverts back to the last commit / This makes actual cha
 **Note: Anything you lose that was never committed is likely never to be seen again.
 
 
+:: GIT REMOTE ::
+
+
+git remote
+
+git remote -v : 
+
+
+
 
 
