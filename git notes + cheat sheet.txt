@@ -1,0 +1,37 @@
+Commands:
+
+git init : starts to track an existing project directory in git
+
+git clone [url] : retrieves a copy of an existing repo that you'd like to contribute to. eg. git clone git://github.com/schacon/grit.git
+
+git clone git://github.com/schacon/grit.git mygrit : If you want to clone the repository into a  						     directory name other than grit
+
+git status : determines which files are in which state
+
+git diff : shows exactly what was changed in the files, but not yet staged 
+
+git diff -cached : see what you’ve staged that will go into your next commit
+
+git diff -staged : compares your staged changes to your last commit
+
+Windows key + Q : exits out of git diff
+
+git commit -v : pass -v option for an even more explicit reminder of what you’ve modified, Doing so also puts the diff of your change in the editor so you can see exactly what you did.
+
+git commit -m "Story 182: Fix benchmarks for speed" : commit on one line
+
+**Note: git diff by itself doesn’t show all changes made since your last commit — only changes that are still unstaged.
+
+
+.gitignore patterns:
+
+*.a       # no .a files
+!lib.a    # but do track lib.a, even though you’re ignoring .a files above
+/TODO     # only ignore the root TODO file, not subdir/TODO
+build/    # ignore all files in the build/ directory
+doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+
+
+Notes:
+
+To start tracking an existing directory or file, first do git add . and then do an initial commit (git commit m ’initial project version’) so that there is a starting point.
