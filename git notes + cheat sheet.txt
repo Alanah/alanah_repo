@@ -51,6 +51,7 @@ git commit -a : skips the staging area (makes git automatically stage every file
 build/    # ignore all files in the build/ directory
 doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
 
+
 :: GIT RM ::
 
 git rm : removes a file from Git - you have to remove it from your tracked files (more accurately,
@@ -68,8 +69,97 @@ been recorded in a snapshot and that can’t be recovered from Git.
 
 **Note: You can pass files, directories, and file-glob patterns to the git rm command. That means you can do things such as 'git rm log/\*.log' (this removes all files that have the .log extension in the log/ directory)
 
+
 :: GIT MV ::
 
 git mv file_from file_to : If you want to rename a file in Git
 
+Equivalent to the above ^ would be:
 
+$ mv README.txt README
+$ git rm README.txt
+$ git add README
+
+
+:: GIT LOG ::
+
+git log : view history of commits
+
+git log -p : shows the diff introduced in each commit / show the patch introduced with each commit
+
+git log -2 : shows the diff introduced in each commit and limits the out to only two entries
+
+git log p -2 : This option displays the same info but with a diff directly following each entry.
+
+git log -n : You can specify the # of the latest commits (note that by default pipes all output through 	     a pager so you see only one page of log output at a time.
+
+git log --stat : abbreviated stats for each commit / show statistics for files modified in each commit
+
+git log --shortstat : Display only the changed/insertions/deletions line from the –stat command
+
+git log --name-only : Show the list of files modified after the commit information
+
+git log --name-status : Show the list of files affected with added/modified/deleted info as well
+
+git log --abbrev-commit : Show only the first few characters of the SHA-1 checksum instead of all 40
+
+git log --relative-date : Displays the date in a relative format (eg, “2 weeks ago”) instead of using 			  the full date format.
+
+git log --graph : Display an ASCII graph of the branch and merge history beside the log output
+
+git log --pretty : Shows commits in an alternate format. Options include oneline, short, full, fuller, 		   and format (where you specify your own format).
+
+git log --pretty=oneline : prints each commit on a single line
+
+git log --pretty=short : short version
+
+git log --pretty=full : long version
+
+git log --pretty=fuller : full information
+
+git log --pretty=format:"%h - %an, %ar : %s" - allows you to specify your own log output format.
+
+git log --pretty=format:"%h %s" --graph : adds an ASCII graph showing your branch and merge history
+
+Git Log Format Options:
+
+Option Description of Output
+%H Commit hash
+%h Abbreviated commit hash
+%T Tree hash
+%t Abbreviated tree hash
+%P Parent hashes
+%p Abbreviated parent hashes
+%an Author name
+%ae Author e-mail
+%ad Author date (format respects the date= option)
+%ar Author date, relative
+%cn Committer name
+%ce Committer email
+%cd Committer date
+%cr Committer date, relative
+%s Subject
+
+
+git log --since : you can specify a specific date (“2008–01–15) or a relative date (2 years 1 day 3 		  minutes ago)
+
+git log --since, --after : Limit the commits to those made after the specified date
+
+git log --until :
+
+git log --until, --before : Limit the commits to those made before the specified date
+
+git log --since=2.weeks : gets the list of commits made in the last two weeks
+
+git log --author : filter commits by author
+
+git log --committer : Only show commits in which the committer entry matches the specified string
+
+git log --grep : search for keywords in the commit messages
+
+git log --all-match : specify both author and grep options or the command will match commits w/ either
+
+git log <path> or <file_name> : you can specify a directory or filename & limit the log output to 				commits that introduced a change to those files
+
+git log --pretty="%h:%s" --author=gitster --since="2008-10-01" \ --before="2008-11-01" --no-merges -- t/ 				if you want to see which commits modifying test files in the Git source code history 			were committed by Junio Hamano and were not merges in the month of
+			October 2008
