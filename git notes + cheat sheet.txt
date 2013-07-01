@@ -1,4 +1,6 @@
-					+GIT NOTES & CHEAT SHEET+
+					+PRO GIT NOTES & CHEAT SHEET+ by Alanah
+
+Topics not covered: 3.5 Remote Branches, pg 58 | 3.6 Rebasing, pg 63 | Chp 4 - Git on the Server, pg 71
 
 :: GIT INIT ::
 --------------------------------------------------------------------------------------------------------
@@ -216,6 +218,9 @@ git remote rename : changes a remote's shortname / eg. git remote rename pb paul
 --------------------------------------------------------------------------------------------------------
 git fetch [remote-name] : retrieve datea from a remote project but does not merge it with your current 			  branch or directory (1-step process)
 
+
+git fetch origin : fetches data from the server and syncs it with your local database/working directory
+
 **Note: It’s important to note that the fetch command pulls the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on. You have to merge it manually into your work when you’re ready.
 
 
@@ -303,7 +308,15 @@ git checkout -b <branch_name> : creates a branch and switches to it at the same 
 
 git branch -d <branch_name> : deletes a branch
 
+git branch -D <branch_name> : forces a branch deletion (you will lose all work on that branch)
+
 git branch -v : view the last commit on each branch
+
+git branch --merged : view which branches are already merged into the branch you're on
+
+git branch --no-marged : view all branches that contain work that you have not merged in yet
+
+**Note: Branches on --merged list without the * in front of them are generally fine to delete with git branch -d; you’ve already incorporated their work into another branch, so you’re not going to lose anything.
 
 
 :: GIT MERGE ::
@@ -340,5 +353,4 @@ Conflict file example: (two files separated by =======)
 please contact us at support@github.com
 </div>
 >>>>>>> iss53:index.html
-
 
