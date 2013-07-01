@@ -288,3 +288,13 @@ git config --global alias.last ’log -1 HEAD’ : see the last commit easily (git l
 
 git config --global alias.visual "!gitk" : run an external command (start the command with !)
 
+
+
+:: GIT BRANCHING ::
+--------------------------------------------------------------------------------------------------------
+
+git branch <name_of_branch> : creates a new branch (doesn't switch to it, just creates it so you are still on master)
+
+git checkout <name_of_branch> : switches to an existing branch
+
+
