@@ -293,8 +293,52 @@ git config --global alias.visual "!gitk" : run an external command (start the co
 :: GIT BRANCHING ::
 --------------------------------------------------------------------------------------------------------
 
-git branch <name_of_branch> : creates a new branch (doesn't switch to it, just creates it so you are still on master)
+git branch : lists your current branches
 
-git checkout <name_of_branch> : switches to an existing branch
+git branch <branch_name> : creates a new branch (doesn't switch to it, just creates it so you are still on master)
 
-GIT BRANCH TESTING!!
+git checkout <branch_name> : switches to an existing branch
+
+git checkout -b <branch_name> : creates a branch and switches to it at the same time
+
+git branch -d <branch_name> : deletes a branch
+
+git branch -v : view the last commit on each branch
+
+
+:: GIT MERGE ::
+--------------------------------------------------------------------------------------------------------
+
+git merge <branch_name> : merges branch with your master branch (issue this command while on master branch)
+
+git merge master : merges the master branch to the branch you are currently on
+
+git mergetool : visual merge tool that walks you through conflicts
+
+**Note: checkout the branch you wish to merge into
+
+
+- GIT MERGE CONFLICT -
+
++git status shows files which are unmerged
+
++manually open the files in question and resolove the conflict
+
++remove <<<<<<<, >>>>>>>, ======= and replace corrected info in both files
+
++run git add on EACH file to mark it as resolved
+
++run git commit to finalaize the merge commit
+
+
+Conflict file example: (two files separated by =======)
+
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+
+
