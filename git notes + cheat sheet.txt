@@ -297,4 +297,4 @@ git branch <name_of_branch> : creates a new branch (doesn't switch to it, just c
 
 git checkout <name_of_branch> : switches to an existing branch
 
-
+GIT BRANCH TESTING!!
