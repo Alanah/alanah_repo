@@ -28,6 +28,8 @@ git diff -cached : see what you’ve staged that will go into your next commit
 
 git diff -staged : compares your staged changes to your last commit
 
+git diff --check : checks for whitespace errors and lists them (commonly used before committing)
+
 Windows key + Q : exits out of git diff
 
 **Note: git diff by itself doesn’t show all changes made since your last commit — only changes that are still unstaged.
@@ -59,6 +61,15 @@ $ git commit --amend
 /TODO     # only ignore the root TODO file, not subdir/TODO
 build/    # ignore all files in the build/ directory
 doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+
+
+:: GIT ADD ::
+--------------------------------------------------------------------------------------------------------
+git add <file> : adds a file to staging
+
+git add . : adds all files in the directory to staging
+
+git add --patch : partially stage files
 
 
 :: GIT RM ::
@@ -214,7 +225,7 @@ git remote rename : changes a remote's shortname / eg. git remote rename pb paul
 
 
 
-:: GIT FETCH ::
+:: GIT FETCH :: (pulls down changes from the repo)
 --------------------------------------------------------------------------------------------------------
 git fetch [remote-name] : retrieve datea from a remote project but does not merge it with your current 			  branch or directory (1-step process)
 
@@ -223,6 +234,7 @@ git fetch origin : fetches data from the server and syncs it with your local dat
 
 **Note: It’s important to note that the fetch command pulls the data to your local repository — it doesn’t automatically merge it with any of your work or modify what you’re currently working on. You have to merge it manually into your work when you’re ready.
 
+**If another developer has pushed their work to the repo before you, then you would normally need to use git fetch followed by git merge to merge the other person's work into your own before it will allow you to push back to the server.
 
 
 :: GIT PULL ::
@@ -353,4 +365,17 @@ Conflict file example: (two files separated by =======)
 please contact us at support@github.com
 </div>
 >>>>>>> iss53:index.html
+
+:: GIT REBASE :: pg. 63
+--------------------------------------------------------------------------------------------------------
+git rebase --i : squashes multiple commits into a single commit making it easier for a maintainer to review
+
+
+:: GIT FORK ::
+--------------------------------------------------------------------------------------------------------
+- Clicking the “Fork” button on a project page, creates your own writable fork of the project. You will then need to add in this new repository URL as a second remote
+
+**Note: You need to push your work up to it. It’s easiest to push the remote branch you’re
+working on up to your repository, rather than merging into your master branch and pushing that up. The reason is that if the work isn’t accepted or is cherry picked, you
+don’t have to rewind your master branch.
 
