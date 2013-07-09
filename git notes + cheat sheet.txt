@@ -192,16 +192,26 @@ git log --pretty="%h:%s" --author=gitster --since="2008-10-01" \ --before="2008-
 
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
+
+
+:: GIT RESET :: (Modify/Delete/Revert Commit)
+--------------------------------------------------------------------------------------------------------
+git reset --hard <sha1-commit-id> : Use git log to locate the commit you wish to back up to !!CAREFUL!! / THIS WILL DELETE YOUR WORKING DIRECTORY CHANGES IF YOU ARE SITTING ON THE COMMIT  
+
+git reset --hard HEAD : gets rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index
+
+git reset HEAD <file> : you’ve changed two files and want to commit them as two separate changes, but 			       		you accidentally type git add * and stage them both. You can unstage one of  			        	the two by first viewing git status then issuing the commmand
+
+git push origin HEAD --force : If you've already pushed, a force push well remove it
+
+
+**NOTE: If others may have pulled your work, then it's best to start a new branch because when they do a pull request, it will just merge it into their work, and you will get it pushed back up again
+
+
+
 :: GIT GUI - GITK HISTORY VISUALIZER :: 
 --------------------------------------------------------------------------------------------------------
 gitk : opens commit history GUI
-
-
-
-
-:: HOW TO UNMODIFY A MODIFIED FILE ::
---------------------------------------------------------------------------------------------------------
-git reset HEAD <file> : you’ve changed two files and want to commit them as two separate changes, but 			       		you accidentally type git add * and stage them both. You can unstage one of  			        	the two by first viewing git status then issuing the commmand.
 
 
 
@@ -386,4 +396,9 @@ git rebase --i : squashes multiple commits into a single commit making it easier
 **Note: You need to push your work up to it. It’s easiest to push the remote branch you’re
 working on up to your repository, rather than merging into your master branch and pushing that up. The reason is that if the work isn’t accepted or is cherry picked, you
 don’t have to rewind your master branch.
+
+
+:: OTHER GIT RESOURCES :: 
+--------------------------------------------------------------------------------------------------------
+Both gitx (for Macs) and gitk (any platform) are useful in exploring log history
 
