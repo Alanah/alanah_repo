@@ -43,7 +43,7 @@ git commit -m "Story 182: Fix benchmarks for speed" : commit on one line
 
 git commit -a : skips the staging area (makes git automatically stage every file that is already 			tracked before doing the commit, letting you skip the git add part)
 
-git commit --amend : undo your last commit / or redo the last commit message
+git commit --amend :  undo your last commit / or redo the last commit message
 
 **Note: if you commit and then realize you forgot to stage the changes in a file you wanted to add to the commit, you can do something like this:
 
@@ -196,11 +196,13 @@ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 :: GIT RESET :: (Modify/Delete/Revert Commit)
 --------------------------------------------------------------------------------------------------------
-git reset --hard <sha1-commit-id> : Use git log to locate the commit you wish to back up to !!CAREFUL!! / THIS WILL DELETE YOUR WORKING DIRECTORY CHANGES IF YOU ARE SITTING ON THE COMMIT  
+git reset --hard <sha1-commit-id> or <tag_name> : Use git log to locate the commit you wish to back up to !!CAREFUL!! / THIS WILL DELETE YOUR WORKING DIRECTORY CHANGES IF YOU ARE SITTING ON THE COMMIT  
 
 git reset --hard HEAD : gets rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index
 
 git reset HEAD <file> : you’ve changed two files and want to commit them as two separate changes, but 			       		you accidentally type git add * and stage them both. You can unstage one of  			        	the two by first viewing git status then issuing the commmand
+
+git revert HEAD --no-edit : Undo's a committed change / --no-edit generates the default output without opening the editor
 
 git push origin HEAD --force : If you've already pushed, a force push well remove it
 
@@ -286,6 +288,8 @@ git tag -v [tag-name] : verify a signed tag (You need the signer’s public key in
 
 git tag -a v1.2 9fceb02 : tags an existing commit (specify the commit checksum (or part of it) at the end of 			  the command. You can view commits easily w/ git log --pretty=oneline)
 
+git tag -d [tag-name] : deletes a specifed tag
+
 git push origin --tags : pushes all of your tags to the remote server that are not already there
 
 **Note: Git uses two main types of tags: lightweight and annotated. A lightweight tag is very
@@ -325,7 +329,7 @@ git config --global alias.visual "!gitk" : run an external command (start the co
 
 
 
-:: GIT BRANCHING ::
+:: GIT BRANCHING/CHECKOUT ::
 --------------------------------------------------------------------------------------------------------
 
 git branch : lists your current branches
@@ -335,6 +339,10 @@ git branch <branch_name> : creates a new branch (doesn't switch to it, just crea
 git checkout <branch_name> : switches to an existing branch
 
 git checkout -b <branch_name> : creates a branch and switches to it at the same time
+
+git checkout <tag> : check out by tag name
+
+git checkout tag^ : ^ checks out the first ancestor of the specified tag (use: <tag_name>~1 if other command doesn't work)
 
 git branch -d <branch_name> : deletes a branch
 
@@ -397,6 +405,10 @@ git rebase --i : squashes multiple commits into a single commit making it easier
 working on up to your repository, rather than merging into your master branch and pushing that up. The reason is that if the work isn’t accepted or is cherry picked, you
 don’t have to rewind your master branch.
 
+
+:: GIT CAT ::
+--------------------------------------------------------------------------------------------------------
+cat <file.rb> : outputs the contents of the file
 
 :: OTHER GIT RESOURCES :: 
 --------------------------------------------------------------------------------------------------------
