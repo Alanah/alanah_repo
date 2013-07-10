@@ -15,6 +15,12 @@ git clone [url] : retrieves a copy of an existing repo that you'd like to contri
 
 git clone git://github.com/schacon/grit.git mygrit : If you want to clone the repository into a  						     directory name other than grit
 
+git clone [repo1] [repo2] : clone a repo within the same working directory
+
+git clone --bare [repo_name] [repo.git] : creates a bare repo w/ no working directory (commonly used for sharing)
+
+**Note: repos ending in .git are bare repositories
+
 :: GIT STATUS ::
 --------------------------------------------------------------------------------------------------------
 git status : determines which files are in which state
@@ -261,7 +267,7 @@ git fetch origin : fetches data from the server and syncs it with your local dat
 --------------------------------------------------------------------------------------------------------
 git pull : automatically fetches and then merges a remote branch into your current branch or the code you 	   	   are working on (2-step process)
 
-
+**Note: git pull is the equivalent to the two steps: get fetch, git merge origin/master
 
 :: GIT PUSH ::
 --------------------------------------------------------------------------------------------------------
@@ -269,6 +275,7 @@ git push [remote-name] [branch-name] : this command is used once you are ready t
 
 **Note: This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to pull down their work first and incorporate it into yours before you’ll be allowed to push.
 
+git push shared master : shared is the name of the repository receiving the changes we are pushing. 
 
 
 :: GIT TAG ::
@@ -332,7 +339,9 @@ git config --global alias.visual "!gitk" : run an external command (start the co
 :: GIT BRANCHING/CHECKOUT ::
 --------------------------------------------------------------------------------------------------------
 
-git branch : lists your current branches
+git branch : lists local branches by default
+
+git branch -a : lists all branches
 
 git branch <branch_name> : creates a new branch (doesn't switch to it, just creates it so you are still on master)
 
@@ -397,6 +406,17 @@ please contact us at support@github.com
 git rebase --i : squashes multiple commits into a single commit making it easier for a maintainer to review
 
 
+:: WHEN TO REBASE, WHEN TO MERGE? :: (GIT IMMERSION, LAB #34)
+
+Don’t use rebase...
+
+    1) If the branch is public and shared with others. Rewriting publicly shared branches will tend to screw up other members of the team.
+
+    2) When the exact history of the commit branch is important (since rebase rewrites the commit history).
+
+- Given the above guidelines, I tend to use rebase for short-lived, local branches and merge for branches in the public repository.
+
+
 :: GIT FORK ::
 --------------------------------------------------------------------------------------------------------
 - Clicking the “Fork” button on a project page, creates your own writable fork of the project. You will then need to add in this new repository URL as a second remote
@@ -413,4 +433,12 @@ cat <file.rb> : outputs the contents of the file
 :: OTHER GIT RESOURCES :: 
 --------------------------------------------------------------------------------------------------------
 Both gitx (for Macs) and gitk (any platform) are useful in exploring log history
+
+
+:: GIT SERVER STARTUP :: (INSTRUCTIONS)
+--------------------------------------------------------------------------------------------------------
+# (From the work directory)
+git daemon --verbose --export-all --base-path=.
+
+Now, in a separate terminal window, go to your work directory
 
